@@ -27,15 +27,11 @@ A simple and responsive **Loan Calculator** web application built with [Next.js]
 2. Install dependencies:
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. Start the development server:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 4. Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
