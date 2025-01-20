@@ -73,7 +73,7 @@ export default function Home() {
         }}
       >
         <h2 className="text-xl pt-6 ml-8 sm:ml-0">Basic Loan Information</h2>
-        <div className="w-2/3 sm:w-full">
+        <div className="w-2/3 sm:w-full text-center">
           <InputContainer>
             <Input
               id="loanAmount"
@@ -140,13 +140,13 @@ export default function Home() {
             />
           </InputContainer>
 
-          <div className="text-center">
+          <div className="text-center mb-8">
             <button className="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none shadow-lg shadow-blue-800/80 font-medium rounded-lg text-sm px-12 py-4 text-center me-2 mb-2">
               Calculate
             </button>
           </div>
 
-          <h2 className="text-xl ml-8 sm:ml-0 mt-8">Payment Information</h2>
+          <h2 className="text-xl pt-6 ml-8 sm:ml-0">Payment Information</h2>
 
           <InputContainer>
             <Input
@@ -169,7 +169,7 @@ export default function Home() {
               disabled={true}
             />
           </InputContainer>
-          <h2 className="text-xl ml-8 sm:ml-0">Summary Information</h2>
+          <h2 className="text-xl pt-6 ml-8 sm:ml-0">Summary Information</h2>
 
           <InputContainer>
             <Input
