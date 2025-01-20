@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#181818] text-white">
-      <nav className="bg-white dark:bg-[#181818] w-full border-b border-gray-200 dark:border-gray-600">
+      <nav className="bg-[#181818] w-full border-b border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
             href="#"
@@ -57,14 +57,14 @@ export default function Home() {
       </nav>
 
       <form
-        className="max-w-2xl mx-auto"
+        className="max-w-2xl mx-auto flex flex-col items-center"
         onSubmit={(e) => {
           e.preventDefault(); // Prevent default form submission behavior
           handleSubmit(onSubmit)(e); // Pass the event to React Hook Form
         }}
       >
         <h2 className="text-xl pt-6 ml-8 sm:ml-0">Basic Loan Information</h2>
-        <div className="  ">
+        <div className="w-2/3 sm:w-full">
           <InputContainer>
             <Input
               id="loanAmount"
@@ -120,10 +120,8 @@ export default function Home() {
               Calculate
             </button>
           </div>
-        </div>
-
-        <div className="mt-8">
-          <h2 className="text-xl ml-8 sm:ml-0">Payment Information</h2>
+        
+          <h2 className="text-xl ml-8 sm:ml-0 mt-8">Payment Information</h2>
 
           <InputContainer>
             <Input

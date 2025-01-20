@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
   disabled
 }) => {
   return (
-    <div className={`w-3/4 sm:w-full relative ${styles["float-label-input"]}`}>
+    <div className={`w-full relative ${styles["float-label-input"]}`}>
       <input
         type={type}
         id={id}
