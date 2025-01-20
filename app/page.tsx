@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "./components/Input";
 import InputContainer from "./components/InputContainer";
+import { calculate } from "./utils/helpers";
 
 type FormData = {
   loanAmount: string;
@@ -22,14 +23,17 @@ export default function Home() {
     setValue,
   } = useForm<FormData>();
 
-  const calculate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Calculating...");
-  };
-
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Form Data:", data); // Access form values here
-    setValue("calculatedLoanPayment", "100000");
+    const calculatedData = calculate(
+      data.loanAmount,
+      data.interestRate,
+      data.lengthOfLoan,
+      data.paymentsPerYear
+    );
+    setValue("calculatedLoanPayment", calculatedData.calculatedLoanPayment);
+    setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
+    setValue("amountPaid", calculatedData.amountPaid);
+    setValue("totalInterestPaid", calculatedData.totalInterestPaid);
   };
 
   return (
