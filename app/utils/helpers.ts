@@ -1,29 +1,24 @@
 import { CalculatedLoanData } from "./interfaces";
 
 export const calculate = (
-    loanAmount: string,
-    interestRate: string,
-    lengthOfLoan:string,
-    paymentsPerYear: string
+    loanAmount: number,
+    interestRate: number,
+    lengthOfLoan:number,
+    paymentsPerYear: number
   ): CalculatedLoanData => {
 
-    const loanAmountNum = parseFloat(loanAmount);
-    const interestRateNum = parseFloat(interestRate);
-    const lengthOfLoanNum = parseFloat(lengthOfLoan);
-    const paymentsPerYearNum = parseFloat(paymentsPerYear);
-
     // Calculate loan payment (PMT formula)
-    const monthlyInterestRate = interestRateNum / 100 / paymentsPerYearNum;
-    const totalPayments = lengthOfLoanNum * paymentsPerYearNum;
+    const monthlyInterestRate = interestRate / 100 / paymentsPerYear;
+    const totalPayments = lengthOfLoan * paymentsPerYear;
 
     const calculatedLoanPayment =
       monthlyInterestRate > 0
-        ? (loanAmountNum * monthlyInterestRate) /
+        ? (loanAmount * monthlyInterestRate) /
           (1 - Math.pow(1 + monthlyInterestRate, -totalPayments))
-        : loanAmountNum / totalPayments;
+        : loanAmount / totalPayments;
 
     const amountPaid = calculatedLoanPayment * totalPayments;
-    const totalInterestPaid = amountPaid - loanAmountNum;
+    const totalInterestPaid = amountPaid - loanAmount;
     
     return {
       calculatedLoanPayment: calculatedLoanPayment.toFixed(2),

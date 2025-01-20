@@ -25,10 +25,10 @@ export default function Home() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const calculatedData = calculate(
-      data.loanAmount,
-      data.interestRate,
-      data.lengthOfLoan,
-      data.paymentsPerYear
+      parseFloat(data.loanAmount),
+      parseFloat(data.interestRate),
+      parseFloat(data.lengthOfLoan),
+      parseFloat(data.paymentsPerYear)
     );
     setValue("calculatedLoanPayment", calculatedData.calculatedLoanPayment);
     setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
@@ -69,7 +69,7 @@ export default function Home() {
             <Input
               id="loanAmount"
               label="Loan Amount ($)"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
               error={errors.loanAmount?.message}
@@ -80,7 +80,7 @@ export default function Home() {
             <Input
               id="interestRate"
               label="Interest Rate (%)"
-              type="text"
+              type="decimal"
               // @ts-ignore
               register={register}
               error={errors.interestRate?.message}
@@ -93,7 +93,7 @@ export default function Home() {
             <Input
               id="lengthOfLoan"
               label="Length of Loan in Years"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
               error={errors.calculatedLoanPayment?.message}
@@ -106,7 +106,7 @@ export default function Home() {
             <Input
               id="paymentsPerYear"
               label="Payments Per Year"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
               error={errors.paymentsPerYear?.message}
