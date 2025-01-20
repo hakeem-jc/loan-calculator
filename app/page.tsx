@@ -30,10 +30,10 @@ export default function Home() {
       parseFloat(data.lengthOfLoan),
       parseFloat(data.paymentsPerYear)
     );
-    setValue("calculatedLoanPayment", calculatedData.calculatedLoanPayment);
+    setValue("calculatedLoanPayment", parseFloat(calculatedData.calculatedLoanPayment).toLocaleString());
     setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
-    setValue("amountPaid", calculatedData.amountPaid);
-    setValue("totalInterestPaid", calculatedData.totalInterestPaid);
+    setValue("amountPaid", parseFloat(calculatedData.amountPaid).toLocaleString());
+    setValue("totalInterestPaid", parseFloat(calculatedData.totalInterestPaid).toLocaleString());
   };
 
   return (
@@ -126,7 +126,7 @@ export default function Home() {
           <InputContainer>
             <Input
               id="calculatedLoanPayment"
-              label="Calculated Loan Payment"
+              label="Calculated Loan Payment ($)"
               type="text"
               // @ts-ignore
               register={register}
