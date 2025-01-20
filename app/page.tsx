@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "./components/Input";
 
@@ -19,10 +18,17 @@ export default function Home() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm<FormData>();
 
   const calculate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Calculating...");
+  };
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log("Form Data:", data); // Access form values here
+    setValue("calculatedLoanPayment", "100000");
   };
 
   return (
@@ -45,7 +51,12 @@ export default function Home() {
         </div>
       </nav>
 
-      <form className="max-w-xl flex flex-col mx-auto" onSubmit={calculate}>
+      <form className="max-w-xl flex flex-col mx-auto" 
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevent default form submission behavior
+            handleSubmit(onSubmit)(e); // Pass the event to React Hook Form
+          }}
+      >
         <h2 className="text-xl pt-6">Basic Loan Information</h2>
         <div className="  ">
           <Input
@@ -111,6 +122,7 @@ export default function Home() {
             // @ts-ignore
             register={register}
             error={errors.calculatedLoanPayment?.message}
+            disabled={true}
           />
 
           <Input
@@ -120,6 +132,7 @@ export default function Home() {
             // @ts-ignore
             register={register}
             error={errors.totalNumberOfPayments?.message}
+            disabled={true}
           />
 
           <h2 className="text-xl">Summary Information</h2>
@@ -131,6 +144,7 @@ export default function Home() {
             // @ts-ignore
             register={register}
             error={errors.totalNumberOfPayments?.message}
+            disabled={true}
           />
 
           <Input
@@ -140,6 +154,7 @@ export default function Home() {
             // @ts-ignore
             register={register}
             error={errors.totalInterestPaid?.message}
+            disabled={true}
           />
         </div>
       </form>

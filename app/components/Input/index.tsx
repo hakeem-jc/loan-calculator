@@ -9,7 +9,7 @@ type InputProps = {
   error?: string;
   placeholder?: string;
   validationRules?: object;
-  readOnly?: boolean;
+  disabled?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
   error,
   placeholder,
   validationRules,
-  readOnly
+  disabled
 }) => {
   return (
     <div className={`relative my-8 ${styles["float-label-input"]}`}>
@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
           error ? "border-red-500" : "border-gray-300"
         }`}
         {...register(id, validationRules)}
-        readOnly={readOnly ?? false}
+        disabled={disabled ?? false}
       />
       <label
         htmlFor={id}
