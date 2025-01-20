@@ -116,7 +116,7 @@ export default function Home() {
           </InputContainer>
 
           <div className="text-center">
-            <button className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-400">
+            <button className="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none shadow-lg shadow-blue-800/80 font-medium rounded-lg text-sm px-12 py-4 text-center me-2 mb-2">
               Calculate
             </button>
           </div>
