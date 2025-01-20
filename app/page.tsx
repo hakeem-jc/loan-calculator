@@ -30,10 +30,19 @@ export default function Home() {
       parseFloat(data.lengthOfLoan),
       parseFloat(data.paymentsPerYear)
     );
-    setValue("calculatedLoanPayment", parseFloat(calculatedData.calculatedLoanPayment).toLocaleString());
+    setValue(
+      "calculatedLoanPayment",
+      parseFloat(calculatedData.calculatedLoanPayment).toLocaleString()
+    );
     setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
-    setValue("amountPaid", parseFloat(calculatedData.amountPaid).toLocaleString());
-    setValue("totalInterestPaid", parseFloat(calculatedData.totalInterestPaid).toLocaleString());
+    setValue(
+      "amountPaid",
+      parseFloat(calculatedData.amountPaid).toLocaleString()
+    );
+    setValue(
+      "totalInterestPaid",
+      parseFloat(calculatedData.totalInterestPaid).toLocaleString()
+    );
   };
 
   return (
@@ -74,7 +83,13 @@ export default function Home() {
               register={register}
               error={errors.loanAmount?.message}
               placeholder="1,000,000"
-              validationRules={{ required: "Loan Amount is required" }}
+              validationRules={{
+                required: "Loan Amount is required",
+                min: {
+                  value: 10000,
+                  message: "Minimum loan amount is $10,000",
+                },
+              }}
             />
 
             <Input
@@ -85,7 +100,13 @@ export default function Home() {
               register={register}
               error={errors.interestRate?.message}
               placeholder="8.45"
-              validationRules={{ required: "Interest Rate is required" }}
+              validationRules={{
+                required: "Interest Rate is required",
+                min: {
+                  value: 0.1,
+                  message: "Interest rate must be greater than 0.1",
+                },
+              }}
             />
           </InputContainer>
 
@@ -96,10 +117,11 @@ export default function Home() {
               type="number"
               // @ts-ignore
               register={register}
-              error={errors.calculatedLoanPayment?.message}
+              error={errors.lengthOfLoan?.message}
               placeholder="60"
               validationRules={{
                 required: "Length of Loan is required",
+                min: { value: 1, message: "Must be 1 year or longer" },
               }}
             />
 
@@ -111,7 +133,10 @@ export default function Home() {
               register={register}
               error={errors.paymentsPerYear?.message}
               placeholder="12"
-              validationRules={{ required: "Payments Per Year is required" }}
+              validationRules={{
+                required: "Payments Per Year is required",
+                min: { value: 12, message: "Minimum of 12 payments a year" },
+              }}
             />
           </InputContainer>
 
@@ -120,7 +145,7 @@ export default function Home() {
               Calculate
             </button>
           </div>
-        
+
           <h2 className="text-xl ml-8 sm:ml-0 mt-8">Payment Information</h2>
 
           <InputContainer>
