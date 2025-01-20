@@ -122,6 +122,8 @@ export default function Home() {
             error={errors.totalNumberOfPayments?.message}
           />
 
+          <h2 className="text-xl">Summary Information</h2>
+
           <Input
             id="amountPaid"
             label="Amount Paid ($)"
