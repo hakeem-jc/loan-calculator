@@ -72,6 +72,7 @@ loan-calculator/
 - Support for multiple currencies and localization.
 - Advanced loan options (e.g., extra payments, adjustable rates).
 - Add i18n Spanish support
+- Add default minimum interest that gets fetched from an API based on locale selected
 
 ## Contributing
 
