@@ -32,16 +32,16 @@ export default function Home() {
     );
     setValue(
       "calculatedLoanPayment",
-      parseFloat(calculatedData.calculatedLoanPayment).toLocaleString()
+      "$ " + parseFloat(calculatedData.calculatedLoanPayment).toLocaleString()
     );
     setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
     setValue(
       "amountPaid",
-      parseFloat(calculatedData.amountPaid).toLocaleString()
+      "$ " + parseFloat(calculatedData.amountPaid).toLocaleString()
     );
     setValue(
       "totalInterestPaid",
-      parseFloat(calculatedData.totalInterestPaid).toLocaleString()
+      "$ " + parseFloat(calculatedData.totalInterestPaid).toLocaleString()
     );
   };
 
