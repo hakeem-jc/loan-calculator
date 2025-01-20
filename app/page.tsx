@@ -63,7 +63,7 @@ export default function Home() {
           handleSubmit(onSubmit)(e); // Pass the event to React Hook Form
         }}
       >
-        <h2 className="text-xl pt-6">Basic Loan Information</h2>
+        <h2 className="text-xl pt-6 ml-8 sm:ml-0">Basic Loan Information</h2>
         <div className="  ">
           <InputContainer>
             <Input
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
 
         <div className="mt-8">
-          <h2 className="text-xl">Payment Information</h2>
+          <h2 className="text-xl ml-8 sm:ml-0">Payment Information</h2>
 
           <InputContainer>
             <Input
@@ -146,7 +146,7 @@ export default function Home() {
               disabled={true}
             />
           </InputContainer>
-          <h2 className="text-xl">Summary Information</h2>
+          <h2 className="text-xl ml-8 sm:ml-0">Summary Information</h2>
 
           <InputContainer>
             <Input
