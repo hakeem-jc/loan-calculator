@@ -71,6 +71,7 @@ loan-calculator/
 - Add an **amortization schedule** to display monthly payment breakdowns.
 - Support for multiple currencies and localization.
 - Advanced loan options (e.g., extra payments, adjustable rates).
+- Add i18n Spanish support
 
 ## Contributing
 
