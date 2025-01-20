@@ -57,7 +57,7 @@ export default function Home() {
       </nav>
 
       <form
-        className="max-w-xl flex flex-col mx-auto"
+        className="max-w-2xl mx-auto"
         onSubmit={(e) => {
           e.preventDefault(); // Prevent default form submission behavior
           handleSubmit(onSubmit)(e); // Pass the event to React Hook Form
