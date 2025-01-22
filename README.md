@@ -66,9 +66,13 @@ loan-calculator/
 
 ## Future Enhancements
 
+- Instant updates to value changes after the first calculation
+- Change payments per year to a dropdown with values Monthly, Forthnightly, etc. Default to monthly
 - Add an **amortization schedule** to display monthly payment breakdowns.
 - Support for multiple currencies and localization.
 - Advanced loan options (e.g., extra payments, adjustable rates).
+- Add i18n Spanish support
+- Add default minimum interest that gets fetched from an API based on locale selected
 
 ## Contributing
 

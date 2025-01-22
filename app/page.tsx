@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "./components/Input";
 import InputContainer from "./components/InputContainer";
+import { calculate } from "./utils/helpers";
 
 type FormData = {
   loanAmount: string;
@@ -22,66 +23,85 @@ export default function Home() {
     setValue,
   } = useForm<FormData>();
 
-  const calculate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Calculating...");
-  };
-
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Form Data:", data); // Access form values here
-    setValue("calculatedLoanPayment", "100000");
+    const calculatedData = calculate(
+      parseFloat(data.loanAmount),
+      parseFloat(data.interestRate),
+      parseFloat(data.lengthOfLoan),
+      parseFloat(data.paymentsPerYear)
+    );
+    setValue(
+      "calculatedLoanPayment",
+      "$ " + parseFloat(calculatedData.calculatedLoanPayment).toLocaleString()
+    );
+    setValue("totalNumberOfPayments", calculatedData.totalNumberOfPayments);
+    setValue(
+      "amountPaid",
+      "$ " + parseFloat(calculatedData.amountPaid).toLocaleString()
+    );
+    setValue(
+      "totalInterestPaid",
+      "$ " + parseFloat(calculatedData.totalInterestPaid).toLocaleString()
+    );
   };
 
   return (
     <main className="min-h-screen bg-[#181818] text-white">
-      <nav className="bg-white dark:bg-[#181818] w-full border-b border-gray-200 dark:border-gray-600">
+      <nav className="bg-[#181818] w-full border-b border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8"
-              alt="Flowbite Logo"
-            />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Lone
+              Lone Calc
             </span>
           </a>
         </div>
       </nav>
 
       <form
-        className="max-w-xl flex flex-col mx-auto"
+        className="max-w-2xl mx-auto flex flex-col items-center"
         onSubmit={(e) => {
           e.preventDefault(); // Prevent default form submission behavior
           handleSubmit(onSubmit)(e); // Pass the event to React Hook Form
         }}
       >
-        <h2 className="text-xl pt-6">Basic Loan Information</h2>
-        <div className="  ">
+        <h2 className="text-xl pt-6 ml-8 sm:ml-0">Basic Loan Information</h2>
+        <div className="w-2/3 sm:w-full text-center">
           <InputContainer>
             <Input
               id="loanAmount"
               label="Loan Amount ($)"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
               error={errors.loanAmount?.message}
               placeholder="1,000,000"
-              validationRules={{ required: "Loan Amount is required" }}
+              validationRules={{
+                required: "Loan Amount is required",
+                min: {
+                  value: 10000,
+                  message: "Minimum loan amount is $10,000",
+                },
+              }}
             />
 
             <Input
               id="interestRate"
               label="Interest Rate (%)"
-              type="text"
+              type="decimal"
               // @ts-ignore
               register={register}
               error={errors.interestRate?.message}
               placeholder="8.45"
-              validationRules={{ required: "Interest Rate is required" }}
+              validationRules={{
+                required: "Interest Rate is required",
+                min: {
+                  value: 0.1,
+                  message: "Interest rate must be greater than 0.1",
+                },
+              }}
             />
           </InputContainer>
 
@@ -89,42 +109,44 @@ export default function Home() {
             <Input
               id="lengthOfLoan"
               label="Length of Loan in Years"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
-              error={errors.calculatedLoanPayment?.message}
+              error={errors.lengthOfLoan?.message}
               placeholder="60"
               validationRules={{
                 required: "Length of Loan is required",
+                min: { value: 1, message: "Must be 1 year or longer" },
               }}
             />
 
             <Input
               id="paymentsPerYear"
               label="Payments Per Year"
-              type="text"
+              type="number"
               // @ts-ignore
               register={register}
               error={errors.paymentsPerYear?.message}
               placeholder="12"
-              validationRules={{ required: "Payments Per Year is required" }}
+              validationRules={{
+                required: "Payments Per Year is required",
+                min: { value: 12, message: "Minimum of 12 payments a year" },
+              }}
             />
           </InputContainer>
 
-          <div className="text-center">
-            <button className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-400">
+          <div className="text-center mb-8">
+            <button className="text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4 focus:outline-none shadow-lg shadow-blue-800/80 font-medium rounded-lg text-sm px-12 py-4 text-center me-2 mb-2">
               Calculate
             </button>
           </div>
-        </div>
 
-        <div className="mt-8">
-          <h2 className="text-xl">Payment Information</h2>
+          <h2 className="text-xl pt-6 ml-8 sm:ml-0">Payment Information</h2>
 
           <InputContainer>
             <Input
               id="calculatedLoanPayment"
-              label="Calculated Loan Payment"
+              label="Calculated Loan Payment ($)"
               type="text"
               // @ts-ignore
               register={register}
@@ -142,7 +164,7 @@ export default function Home() {
               disabled={true}
             />
           </InputContainer>
-          <h2 className="text-xl">Summary Information</h2>
+          <h2 className="text-xl pt-6 ml-8 sm:ml-0">Summary Information</h2>
 
           <InputContainer>
             <Input
